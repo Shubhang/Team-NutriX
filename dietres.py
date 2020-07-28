@@ -1,22 +1,30 @@
+#dietary restrictions
+dietres = {}
+
+
+
 #lactose intolerance
-lac = [milk, cheese, dairy]
+dietres["lactose intolerance"] = ["milk", "cheese", "dairy"]
 
 #gluten intolerance (celiac)
-cel = [gluten, wheat]
+dietres["celiac"] = ["gluten", "wheat"]
 
 #diabetes
-db = [sugar]
+dietres["diabetes"] = ["sugar", "sucrose", "fructose"]
 
 #high blood pressure
-hbp = [sodium]
+dietres["high blood pressure"] = ["sodium", "salt"]
 
 #various allergens 
-allergens = [nuts, soy, egg, fish]
+dietres["allergens"] = ["nuts", "soy", "egg", "fish"]
 
 #religious/cultural restrictions
 #http://www.halalrc.org/images/Research%20Material/Literature/Guide%20to%20Halal%20Foods.pdf
-halah = [alcohol, pork, bacon, vanilla]
-kosher = [pork, rabbit, catfish, sturgeon, shellfish]
+dietres["halah"] = ["alcohol", "pork", "bacon", "vanilla"]
+dietres["kosher"] = ["pork", "rabbit", "catfish", "sturgeon", "shellfish"]
 
 #vegetarian
-veg = [beef, fish]
+dietres["vegetarian"] = ["beef", "fish", "goat", "lamb", "meatball", "pork", "poultry", "chicken", "sausage", "crab", "lobster"]
+
+#veganism
+dietres["vegan"] = dietres["vegetarian"] + dietres["lactose intolerance"] + ["egg"]
