@@ -8,4 +8,4 @@ Shubhang: Working on a model (Images to Allergens) using KNearest Neighbors, Cat
 
 Pluem: Working on a LinearSVC text to text model. Also, converting categorical features in the dietres dataset to numerical
 
-Josephine: Working on gathering data for diets
+Josephine: Working on Naive Bayes text to text model.
