@@ -8,13 +8,54 @@ from sklearn.svm import LinearSVC
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.datasets import make_classification
+from sklearn.feature_extraction import FeatureHasher
+from sklearn.preprocessing import MultiLabelBinarizer
+import numpy as np # linear algebra
+import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+import matplotlib.pyplot as plt # for data visualization purposes
+import seaborn as sns # for statistical data visualization
 
-dataset = read_csv("NEW-data_recipev2.csv")
-array = dataset.values
-X = array[:,1:3]
-y = array[:,3]
-X_train, X_validation, Y_train, Y_validation = train_test_split(X, y, test_size=0.20, random_state=1, shuffle=True)
+dataset = read_csv("data/NEW-data_recipe.csv",encoding='unicode_escape')
+
+def convertToList(x):
+    return x.replace(" ","").lower().split(',')
+
+dataset['ingredients']=dataset['ingredients'].apply(convertToList)
+dataset['Allergens']=dataset['Allergens'].apply(convertToList)
+mlb = MultiLabelBinarizer(sparse_output=True)
+
+def OneHotAllergens(df):
+    v = df.Allergens.values
+    l = [len(x) for x in v.tolist()]
+    f, u = pd.factorize(np.concatenate(v))
+    n, m = len(v), u.size
+    i = np.arange(n).repeat(l)
+    dummies = pd.DataFrame(
+        np.bincount(i * m + f, minlength=n * m).reshape(n, m),
+        df.index, u
+    )
+    return df.drop('Allergens', 1).join(dummies)
+
+dataset=OneHotAllergens(dataset)
+def OneHotIngredients(df):
+    v = df.ingredients.values
+    l = [len(x) for x in v.tolist()]
+    f, u = pd.factorize(np.concatenate(v))
+    n, m = len(v), u.size
+    i = np.arange(n).repeat(l)
+    dummies = pd.DataFrame(
+        np.bincount(i * m + f, minlength=n * m).reshape(n, m),
+        df.index, u
+    )
+    df.drop('ingredients',1)
+    return df.drop('ingredients', 1).join(dummies,lsuffix='', rsuffix='2')
+dataset=OneHotIngredients(dataset)
+dietres = ['diabetes','highbloodpressure','halah','celiac','allergens','lactoseintolerance','vegan','vegetarian','none','kosher']
+X = dataset.drop(dietres+['recipe_id','recipe_name'],axis=1)
+y = dataset['diabetes']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = 0)
+    
 LSVC = LinearSVC()
-LSVC.fit(X_train,Y_train)
-y2_LSVC_model = LSVC.predict(X_validation)
-print("LSVC Accurary:",accuracy_score(Y_validation,y2_LSVC_model)) 
+LSVC.fit(X_train,y_train)
+y2_LSVC_model = LSVC.predict(X_test)
+print("LSVC Accurary:",accuracy_score(y_test,y2_LSVC_model)) 
