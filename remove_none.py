@@ -9,7 +9,6 @@ import pandas as pd
 import csv
 new_member=[]
 #This part for NEW-ingredientsv1 dataset
-"""
 with open("data/NEW-ingredientsv1.csv",encoding="utf8") as file:
     reader = csv.reader(file)
     i=0
@@ -19,6 +18,9 @@ with open("data/NEW-ingredientsv1.csv",encoding="utf8") as file:
        else:
            if(row[15]!='NONE'):
                new = row.copy()
+           else:
+               i+=1
+               continue
        new_member.append(new)
        i+=1
            
@@ -37,6 +39,9 @@ with open("data/NEW-data_recipe.csv",encoding="utf8") as file:
        else:
            if(row[3]!='NONE'):
                new = row.copy()
+           else:
+               i+=1
+               continue
        new_member.append(new)
        i+=1
             
@@ -44,3 +49,4 @@ with open('NEW-data_recipe-none-removed.csv','w',encoding="utf8",newline='') as 
     writer = csv.writer(file)
     for i in new_member:
         writer.writerow(i)
+"""
