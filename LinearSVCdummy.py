@@ -50,25 +50,27 @@ def OneHotIngredients(df):
     df.drop('ingredients',1)
     return df.drop('ingredients', 1).join(dummies,lsuffix='', rsuffix='2')
 dataset=OneHotIngredients(dataset)
-dietres = ['diabetes','highbloodpressure','halah','celiac','allergens','lactoseintolerance','vegan','vegetarian','kosher']
-X = dataset.drop(dietres+['recipe_id','recipe_name'],axis=1)
-y = dataset['diabetes']
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = 0)
+dietres = ['diabetes','highbloodpressure','halah','celiac','allergens','lactoseintolerance','vegan','vegetarian','none','kosher']
+for allergenType in dietres:
+    X = dataset.drop(dietres+['recipe_id','recipe_name'],axis=1)
+    y = dataset[allergenType]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = 0)
 
-cols = X_train.columns
-from sklearn.preprocessing import RobustScaler
+    cols = X_train.columns
+    from sklearn.preprocessing import RobustScaler
 
-scaler = RobustScaler()
+    scaler = RobustScaler()
 
-X_train = scaler.fit_transform(X_train)
+    X_train = scaler.fit_transform(X_train)
 
-X_test = scaler.transform(X_test)
-X_train = pd.DataFrame(X_train, columns=[cols])
-X_test = pd.DataFrame(X_test, columns=[cols])
+    X_test = scaler.transform(X_test)
+    X_train = pd.DataFrame(X_train, columns=[cols])
+    X_test = pd.DataFrame(X_test, columns=[cols])
 
-LSVC = LinearSVC()
-LSVC.fit(X_train,y_train)
-y2_LSVC_model = LSVC.predict(X_test)
-print("LSVC Accurary:",accuracy_score(y_test,y2_LSVC_model)) 
-print('Training-set accuracy score: {0:0.4f}'. format(LSVC.score(X_train,y_train)))
-print('Test set score: {:.4f}'.format(LSVC.score(X_test, y_test)))
+    LSVC = LinearSVC()
+    LSVC.fit(X_train,y_train)
+    y2_LSVC_model = LSVC.predict(X_test)
+    print("Perform analysis on:"+allergenType)
+    print("LSVC Accurary:",accuracy_score(y_test,y2_LSVC_model)) 
+    ('Training-set accuracy score: {0:0.4f}'. format(LSVC.score(X_train,y_train)))
+    print('Test set score: {:.4f}'.format(LSVC.score(X_test, y_test)))
