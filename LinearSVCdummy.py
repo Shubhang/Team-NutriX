@@ -72,5 +72,5 @@ for allergenType in dietres:
     y2_LSVC_model = LSVC.predict(X_test)
     print("Perform analysis on:"+allergenType)
     print("LSVC Accurary:",accuracy_score(y_test,y2_LSVC_model)) 
-    ('Training-set accuracy score: {0:0.4f}'. format(LSVC.score(X_train,y_train)))
+    print('Training-set accuracy score: {0:0.4f}'. format(LSVC.score(X_train,y_train)))
     print('Test set score: {:.4f}'.format(LSVC.score(X_test, y_test)))
