@@ -424,23 +424,14 @@ The abstract goes here.
 
 \section{Introduction}
 % no \IEEEPARstart
-This demo file is intended to serve as a ``starter file''
-for IEEE conference papers produced under \LaTeX\ using
-IEEEtran.cls version 1.8 and later.
+Food plays an important role in our every life; it is essential for the human body to function. People have different preferable food depending on various conditions such as allergens, or congenital disease. Therefore, the food recommendation system is one of the important research areas. There is adequate research related to food recommendation and machine learning, as there is more public data available than before. 
 % You must have at least 2 lines in the paragraph with the drop letter
 % (should never be an issue)
-I wish you the best of success.
 
-\hfill mds
- 
-\hfill December 27, 2012
+The recent research on food recommendations is various. Mostly, researchers were able to predict food’s ingredients by taking a picture. They used various machine learning techniques such as SVM, multiclass- Adaboost, etc. One notable work is, “Food-101 – Mining Discriminative Components with Random Forests”, which relies on Random Forests Discriminative Components to classify foods into 101 categories. Researchers put emphasis on their use of super pixels, comparable to mosaic tiles, as a stand in for image patches, as they claim are best for object detection.The RFDC model performed well on their own testing data at 50.76\% accuracy, only being outperformed by Convolution Neural Network by about 6\%. However, when tested on MIT-Indoor data at 58.36\%, it was outperformed by Discriminative Mode Seeking and Intuitionistic Fuzzy Values by over 2-8\%.With even more fruitful results, “  Automatic Chinese Food Identification and Quantity Estimation” relies heavily on sparse coding and SVM to classify foods into 50 categories. Researchers did not compare their models to others developed in the field, but rather compared different variations of their models against each other. They found that Multi-class Adaboost with Top-5 accuracy proved to be the most accurate, with an accuracy of 90.9\%. However, the average accuracy of their work is 68.3\%.
 
-\subsection{Subsection Heading Here}
-Subsection text here.
+In this paper, we target to develop a system that can classify food by its ingredients from pictures and texts. We aim to create two machine learning models; first is picture to text model, second is text to text model. Each model will be tested on a different machine learning model and compared to see which one performs better.
 
-
-\subsubsection{Subsubsection Heading Here}
-Subsubsection text here.
 
 
 % An example of a floating figure using the graphicx package.
@@ -526,6 +517,22 @@ Subsubsection text here.
 % footnotes above bottom floats. This can be corrected via the \fnbelowfloat
 % command of the stfloats package.
 
+\section{Dataset}
+
+Our study relies on the data retrieved from an online machine learning platform, kaggle.com. The website contains free datasets published by its users, mainly used for data science purposes. We three datasets; the first two were found on kaggle.com, the third dataset was found on eightportions.com. The first dataset, ingredient v1.csv was uploaded by the company Datafiniti under the CC BY-NC-SA 4.0 copyright. Datafiniti compiled 10,000 entries containing attributes such as “brand, name, manufacturer, category, features, and more” (features being the ingredients list). The second dataset was created by Elisa for the purpose of creating a food recommendation system. The dataset was collected from allrecipes.com; it contains about 50,000 recipes, including its name, ingredients, image\_url, cooking\_direction, nutrition, and id. The third dataset was created by Ryan Lee under the ODC Attribution license. Lee scraped this dataset from various websites; it contains about 125,000 recipes, including name, ingredients, instructions, source, and picture. 
+
+In essence, the required data needed in each dataset was an ingredients list for each food entry, which were provided in both of the files collected from Kaggle. As aforementioned, our first dataset contained 10,000 entries and the second one contained 50,000. With that being said, a considerable amount of the entries contained null values for certain values, which was the first obstacle encountered during the project. An even bigger issue that was encountered was that a considerable amount of entries were non-food items (such as Clorox), causing noise in the data.  
+
+\section{Preprocessing}
+The preprocessing of data proved to be the most extensive part of the process; the steps taken have been broken down into four parts below:
+\subsection{Cleaning Data}
+For ingredients v1.csv, there were some ingredients that contain special characters such as \^i; some of the food was left as none. It might affect the accuracy of the model so first, we removed special characters and none from the dataset. For core-data\_recipe.csv, we neglected some columns because the dataset was too big. The columns that were removed were image\_url, cooking ingredients, and nutrition.
+\subsection{Classifying Dietary Restrictions}
+ We created a dictionary of allergens that indicate each dietary restriction and ingredients that contain them. We aimed to perform a machine learning model on following nine different dietary; lactose intolerance, celiac, diabetes, high blood pressure, allergens, halal, kosher, vegetarian, and vegan. Then, we performed a string check on each dataset to detect allergens. For example, when we looked at the ingredients of ‘Potato Bacon Pizza.’, we detected that there was cheese. Thus, we added lactose intolerance into its allergens column. Referencing back to the issue of non-food data entries mentioned in “Overview of Datasets”, one more round of data clearing was applied after classifying dietary restrictions. As a fix to the issue, data entries that contained no allergens were removed, since non-food items would not raise a flag on any of the dietary restrictions. 
+\subsection{One Hot Encoding}
+Since the ingredients column contained entries of lists. The data was therefore three dimensional. To lower the dimensionality back down to two, one hot encoding was performed. As a result, each possible ingredient was then listed as its own column and each row displayed a tally of how many times said ingredient shows up in the recipe.
+\subsection{Separating into Feature Vectors and Target Variables}
+After One Hot Encoding the ingredients, one more step remained before feeding our data into the models - the separation of variables. 
 
 
 \section{Conclusion}
