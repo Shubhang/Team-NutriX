@@ -35,6 +35,8 @@ with open("data/third_datasetcombined.csv",encoding="utf8") as file:
                     res +=k
                 string=string+res
         new[2]=string
+        if(string=="" or string =="N/A"):
+            continue
         new_member.append(new)
            
 with open('data/New_3rd_data.csv','w',encoding="utf8",newline='') as file:
