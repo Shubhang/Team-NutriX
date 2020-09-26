@@ -23,7 +23,7 @@ with open("data/third_datasetcombined.csv",encoding="utf8") as file:
         string = ""
         for j in lis:
             if(j!=", " and j != "[" and j!="]"):
-                dummy_str = j.strip("ADVERTISEMENT")
+                dummy_str = j.replace("\"","").replace("ADVERTISEMENT","")   
                 if(dummy_str==""):
                     continue
                 if(string!=""):
@@ -41,7 +41,7 @@ with open('data/New_3rd_data.csv','w',encoding="utf8",newline='') as file:
     writer = csv.writer(file)
     for i in new_member:
         writer.writerow(i)
-"""
+"""      
 #This part for NEW-data_recipe.csv
 with open("data/NEW-data_recipe.csv",encoding="utf8") as file:
     reader = csv.reader(file)
