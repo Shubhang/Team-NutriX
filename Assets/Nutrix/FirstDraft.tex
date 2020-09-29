@@ -128,7 +128,7 @@
 
 % *** GRAPHICS RELATED PACKAGES ***
 %
-\ifCLASSINFOpdf
+\if CLASSINFOpdf
   % \usepackage[pdftex]{graphicx}
   % declare the path(s) where your graphic files are
   % \graphicspath{{../pdf/}{../jpeg/}}
@@ -517,7 +517,7 @@ In this paper, we target to develop a system that can classify food by its ingre
 % footnotes above bottom floats. This can be corrected via the \fnbelowfloat
 % command of the stfloats package.
 
-\section{Dataset}
+\section{Datasets}
 
 Our study relies on the data retrieved from an online machine learning platform, kaggle.com. The website contains free datasets published by its users, mainly used for data science purposes. We three datasets; the first two were found on kaggle.com, the third dataset was found on eightportions.com. The first dataset, ingredient v1.csv was uploaded by the company Datafiniti under the CC BY-NC-SA 4.0 copyright. Datafiniti compiled 10,000 entries containing attributes such as “brand, name, manufacturer, category, features, and more” (features being the ingredients list). The second dataset was created by Elisa for the purpose of creating a food recommendation system. The dataset was collected from allrecipes.com; it contains about 50,000 recipes, including its name, ingredients, image\_url, cooking\_direction, nutrition, and id. The third dataset was created by Ryan Lee under the ODC Attribution license. Lee scraped this dataset from various websites; it contains about 125,000 recipes, including name, ingredients, instructions, source, and picture. 
 
@@ -526,15 +526,17 @@ In essence, the required data needed in each dataset was an ingredients list for
 \section{Preprocessing}
 The preprocessing of data proved to be the most extensive part of the process; the steps taken have been broken down into four parts below:
 \subsection{Cleaning Data}
-For ingredients v1.csv, there were some ingredients that contain special characters such as \^i; some of the food was left as none. It might affect the accuracy of the model so first, we removed special characters and none from the dataset. For core-data\_recipe.csv, we neglected some columns because the dataset was too big. The columns that were removed were image\_url, cooking ingredients, and nutrition.
-\subsection{Classifying Dietary Restrictions}
- We created a dictionary of allergens that indicate each dietary restriction and ingredients that contain them. We aimed to perform a machine learning model on following nine different dietary; lactose intolerance, celiac, diabetes, high blood pressure, allergens, halal, kosher, vegetarian, and vegan. Then, we performed a string check on each dataset to detect allergens. For example, when we looked at the ingredients of ‘Potato Bacon Pizza.’, we detected that there was cheese. Thus, we added lactose intolerance into its allergens column. Referencing back to the issue of non-food data entries mentioned in “Overview of Datasets”, one more round of data clearing was applied after classifying dietary restrictions. As a fix to the issue, data entries that contained no allergens were removed, since non-food items would not raise a flag on any of the dietary restrictions. 
+As a result of the data being sourced through opportunistic methods rather than experimentally, missing and inappropriate data proved to be a cumbersome obstacle. For ingredients v1.csv, there were some ingredients that contain special characters such as \^i; some of the food was left as none. It might affect the accuracy of the model so first, we removed special characters and none from the dataset. For core-data\_recipe.csv, we neglected some columns because the dataset was too big. The columns that were removed were image\_url, cooking ingredients, and nutrition.]
+\subsection{Classifying Dietary Restrictions & Feature Selections}
+ We created a dictionary of allergens that indicate each dietary restriction and ingredients that contain them. We aimed to perform a machine learning model on following nine different dietary restrictions; lactose intolerance, celiac, diabetes, high blood pressure, allergens, halal, kosher, vegetarian, and vegan. Then, we performed a string check on each dataset to detect allergens. For example, when we looked at the ingredients of ‘Potato Bacon Pizza.’, we detected that there was cheese. Thus, we added lactose intolerance into its allergens column. Referencing back to the issue of non-food data entries mentioned in “Overview of Datasets”, one more round of data clearing was applied after classifying dietary restrictions. As a fix to the issue, data entries that contained no allergens were removed, since non-food items would not raise a flag on any of the dietary restrictions. 
+\subsection{Feature Scaling}
 \subsection{One Hot Encoding}
-Since the ingredients column contained entries of lists. The data was therefore three dimensional. To lower the dimensionality back down to two, one hot encoding was performed. As a result, each possible ingredient was then listed as its own column and each row displayed a tally of how many times said ingredient shows up in the recipe.
+Since the ingredients column contained entries of lists. The data was therefore three dimensional. To lower the array's dimensionality back down to two, one hot encoding was performed. As a result, each possible ingredient was then listed as its own column and each row displayed a tally of how many times said ingredient shows up in the recipe.
 \subsection{Separating into Feature Vectors and Target Variables}
-After One Hot Encoding the ingredients, one more step remained before feeding our data into the models - the separation of variables. 
-
-
+After One Hot Encoding the ingredients, one more step remained before feeding our data into the models - the separation of variables. The target variable was an array of the different dietary restrictions that was looped through, allowing us to apply the model on each one. 
+\section{Training and Testing Data}
+\section{Postprocessing and Visualization}
+\section{Results}
 \section{Conclusion}
 The conclusion goes here.
 
