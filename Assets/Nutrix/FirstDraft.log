@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.7) (preloaded format=pdflatex 2020.8.29)  29 SEP 2020 05:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.7) (preloaded format=pdflatex 2020.8.29)  4 OCT 2020 11:53
 entering extended mode
 **./FirstDraft.tex
 (FirstDraft.tex
@@ -115,13 +115,24 @@ LaTeX Font Info:    ... okay on input line 330.
 
 
 ]
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 583.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 583.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 583.
+! Misplaced alignment tab character &.
+<argument> Classifying Dietary Restrictions &
+                                              Feature Selections
+l.530 ...ietary Restrictions & Feature Selections}
+                                                  
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
 
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 585.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 585.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 585.
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -133,24 +144,22 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[2
-
-] (FirstDraft.aux) ) 
+[2] (FirstDraft.aux) ) 
 Here is how much of TeX's memory you used:
  1080 strings out of 481212
  20469 string characters out of 2906442
- 263453 words of memory out of 3000000
+ 262453 words of memory out of 3000000
  16729 multiletter control sequences out of 15000+200000
  569098 words of font info for 86 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
  27i,8n,25p,1414b,242s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/Joie/AppData/Local/Programs/MiKTeX/fonts/enc/dvip
-s/base/8r.enc}<C:/Users/Joie/AppData/Local/Programs/MiKTeX/fonts/type1/urw/time
-s/utmb8a.pfb><C:/Users/Joie/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times
-/utmbi8a.pfb><C:/Users/Joie/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times
-/utmr8a.pfb><C:/Users/Joie/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/
-utmri8a.pfb>
-Output written on FirstDraft.pdf (2 pages, 55476 bytes).
+{C:/Users/Joie/AppData/Local/Programs/MiKTeX/fonts/enc/dv
+ips/base/8r.enc}<C:/Users/Joie/AppData/Local/Programs/MiKTeX/fonts/type1/urw/ti
+mes/utmb8a.pfb><C:/Users/Joie/AppData/Local/Programs/MiKTeX/fonts/type1/urw/tim
+es/utmbi8a.pfb><C:/Users/Joie/AppData/Local/Programs/MiKTeX/fonts/type1/urw/tim
+es/utmr8a.pfb><C:/Users/Joie/AppData/Local/Programs/MiKTeX/fonts/type1/urw/time
+s/utmri8a.pfb>
+Output written on FirstDraft.pdf (2 pages, 61682 bytes).
 PDF statistics:
  26 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
