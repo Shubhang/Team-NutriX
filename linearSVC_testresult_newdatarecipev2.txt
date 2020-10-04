@@ -1,0 +1,52 @@
+Perform analysis on:diabetes
+LSVC Accurary: 0.9948206858667503
+Training-set accuracy score: 1.0000
+Test set score: 0.9948
+Perform analysis on:highbloodpressure
+LSVC Accurary: 0.9901122184728871
+Training-set accuracy score: 1.0000
+Test set score: 0.9901
+Perform analysis on:halah
+LSVC Accurary: 0.9858745978184101
+Training-set accuracy score: 1.0000
+Test set score: 0.9859
+Perform analysis on:celiac
+LSVC Accurary: 0.9959978027152162
+Training-set accuracy score: 1.0000
+Test set score: 0.9960
+Perform analysis on:allergens
+LSVC Accurary: 0.9967825472808601
+Training-set accuracy score: 1.0000
+Test set score: 0.9968
+Perform analysis on:lactoseintolerance
+LSVC Accurary: 0.9770854586831986
+Training-set accuracy score: 1.0000
+Test set score: 0.9771
+Perform analysis on:vegan
+LSVC Accurary: 0.9514243113866436
+Training-set accuracy score: 1.0000
+Test set score: 0.9514
+Perform analysis on:vegetarian
+LSVC Accurary: 0.9545632896492192
+Training-set accuracy score: 0.9999
+Test set score: 0.9546
+Perform analysis on:kosher
+LSVC Accurary: 0.991917130973868
+Training-set accuracy score: 1.0000
+Test set score: 0.9919
+Perform analysis on:soy
+LSVC Accurary: 0.9973318684768108
+Training-set accuracy score: 1.0000
+Test set score: 0.9973
+Perform analysis on:seafoodandfish
+LSVC Accurary: 0.9860315467315389
+Training-set accuracy score: 1.0000
+Test set score: 0.9860
+Perform analysis on:treenut
+LSVC Accurary: 0.9948991603233147
+Training-set accuracy score: 1.0000
+Test set score: 0.9949
+Perform analysis on:nut
+LSVC Accurary: 0.9918386565173036
+Training-set accuracy score: 1.0000
+Test set score: 0.9918

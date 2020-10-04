@@ -14,8 +14,9 @@ import numpy as np # linear algebra
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 import matplotlib.pyplot as plt # for data visualization purposes
 import seaborn as sns # for statistical data visualization
+#from category_encoders import TargetEncoder
 
-dataset = read_csv("data/NEW-data_recipe.csv",encoding='unicode_escape')
+dataset = read_csv("data/NEW-data_recipev2.csv",encoding='unicode_escape')
 
 def convertToList(x):
     return x.replace(" ","").lower().split(',')
@@ -23,7 +24,6 @@ def convertToList(x):
 dataset['ingredients']=dataset['ingredients'].apply(convertToList)
 dataset['Allergens']=dataset['Allergens'].apply(convertToList)
 mlb = MultiLabelBinarizer(sparse_output=True)
-
 def OneHotAllergens(df):
     v = df.Allergens.values
     l = [len(x) for x in v.tolist()]
@@ -44,15 +44,16 @@ def OneHotIngredients(df):
     n, m = len(v), u.size
     i = np.arange(n).repeat(l)
     dummies = pd.DataFrame(
-        np.bincount(i * m + f, minlength=n * m).reshape(n, m),
+        np.bincount(i*m+f, minlength=n * m).reshape(n, m),
         df.index, u
     )
     df.drop('ingredients',1)
     return df.drop('ingredients', 1).join(dummies,lsuffix='', rsuffix='2')
 dataset=OneHotIngredients(dataset)
-dietres = ['diabetes','highbloodpressure','halah','celiac','allergens','lactoseintolerance','vegan','vegetarian','none','kosher']
+dietres = ['diabetes','highbloodpressure','halah','celiac','allergens','lactoseintolerance','vegan','vegetarian','kosher','soy','seafoodandfish','treenut','nut']
+X = dataset.drop(dietres+['recipe_id','recipe_name'],axis=1)
+
 for allergenType in dietres:
-    X = dataset.drop(dietres+['recipe_id','recipe_name'],axis=1)
     y = dataset[allergenType]
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = 0)
 
