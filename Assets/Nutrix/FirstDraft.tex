@@ -402,7 +402,7 @@ Email: http://www.michaelshell.org/contact.html}%\and
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-The abstract goes here.
+This project searches for a manner in which to predict the dietary restrictions within a food based off an ingredient list. Intuitively, some dietary restrictions are identifiable without question. For example, cheese will trigger a flag for lactose intolerance. The additional step that this project takes is identifying the probability of other dietary restrictions being triggered as a result of correlation between ingredients. To extend the aforementioned example, our machine might detect that a recipe with cheese might also have high sodium content, triggering high blood pressure as a dietary restriction. 
 \end{abstract}
 
 % no keywords
@@ -535,6 +535,7 @@ Since the ingredients column contained entries of lists. The data was therefore 
 \subsection{Separating into Feature Vectors and Target Variables}
 After One Hot Encoding the ingredients, one more step remained before feeding our data into the models - the separation of variables. The target variable was an array of the different dietary restrictions that was looped through, allowing us to apply the model on each one. 
 \section{Training and Testing Data}
+One of the challenges faced when searching for correlations of each individual dietary restriction was that the models only identified the correlations for one target variable at a time. However, the process of training and testing the model based off of each restriction followed identical form without loss of generality. Therefore, a for each loop was applied on the set of dietary restrictions, calculating the correlations for each dietary restriction one at a time. 
 \section{Postprocessing and Visualization}
 \section{Results}
 \section{Conclusion}
